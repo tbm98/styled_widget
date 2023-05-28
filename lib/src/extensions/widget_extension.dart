@@ -4,8 +4,7 @@ typedef GestureOnTapChangeCallback = void Function(bool tapState);
 
 extension StyledWidget on Widget {
   _StyledAnimatedModel _getAnimation(BuildContext context) {
-    final _StyledAnimatedModel? animation =
-        _StyledInheritedAnimation.of(context)?.animation;
+    final _StyledAnimatedModel? animation = _StyledInheritedAnimation.of(context)?.animation;
     assert(
       animation != null,
       '[styled_widget]: You can`t animate without defining the animation. Call the method animate() higher in your widget hierarchy to define an animation',
@@ -13,17 +12,17 @@ extension StyledWidget on Widget {
     return animation!;
   }
 
-  /// animated all properties before this method
-  Widget animate(
-    Duration duration,
-    Curve curve, {
-    Key? key,
-  }) =>
-      _StyledInheritedAnimation(
-        key: key,
-        animation: _StyledAnimatedModel(duration: duration, curve: curve),
-        child: this,
-      );
+  // /// animated all properties before this method
+  // Widget animate(
+  //   Duration duration,
+  //   Curve curve, {
+  //   Key? key,
+  // }) =>
+  //     _StyledInheritedAnimation(
+  //       key: key,
+  //       animation: _StyledAnimatedModel(duration: duration, curve: curve),
+  //       child: this,
+  //     );
 
   /// Applies a parent to a child
   /// ```dart
@@ -36,8 +35,7 @@ extension StyledWidget on Widget {
   /// Widget build(BuildContext) => childWidget
   ///   .parent(parentWidget);
   /// ```
-  Widget parent(Widget Function({required Widget child}) parent) =>
-      parent(child: this);
+  Widget parent(Widget Function({required Widget child}) parent) => parent(child: this);
 
   Widget padding({
     Key? key,
@@ -563,15 +561,10 @@ extension StyledWidget on Widget {
   }) {
     final BoxDecoration decoration = BoxDecoration(
       border: Border(
-        left: (left ?? all) == null
-            ? BorderSide.none
-            : BorderSide(color: color, width: left ?? all ?? 0, style: style),
-        right: (right ?? all) == null
-            ? BorderSide.none
-            : BorderSide(color: color, width: right ?? all ?? 0, style: style),
-        top: (top ?? all) == null
-            ? BorderSide.none
-            : BorderSide(color: color, width: top ?? all ?? 0, style: style),
+        left: (left ?? all) == null ? BorderSide.none : BorderSide(color: color, width: left ?? all ?? 0, style: style),
+        right:
+            (right ?? all) == null ? BorderSide.none : BorderSide(color: color, width: right ?? all ?? 0, style: style),
+        top: (top ?? all) == null ? BorderSide.none : BorderSide(color: color, width: top ?? all ?? 0, style: style),
         bottom: (bottom ?? all) == null
             ? BorderSide.none
             : BorderSide(color: color, width: bottom ?? all ?? 0, style: style),
@@ -640,8 +633,7 @@ extension StyledWidget on Widget {
           );
   }
 
-  double _elevationOpacityCurve(double x) =>
-      pow(x, 1 / 16) / sqrt(pow(x, 2) + 2) + 0.2;
+  double _elevationOpacityCurve(double x) => pow(x, 1 / 16) / sqrt(pow(x, 2) + 2) + 0.2;
 
   // TODO: Animate elevation
   Widget elevation(
@@ -786,9 +778,7 @@ extension StyledWidget on Widget {
       minHeight: minHeight,
       maxHeight: maxHeight,
     );
-    constraints = (width != null || height != null)
-        ? constraints.tighten(width: width, height: height)
-        : constraints;
+    constraints = (width != null || height != null) ? constraints.tighten(width: width, height: height) : constraints;
     return animate
         ? _StyledAnimatedBuilder(
             key: key,
@@ -876,8 +866,7 @@ extension StyledWidget on Widget {
               key: key,
               builder: (BuildContext context) {
                 // TODO: PERFORMANCE: findAncestorWidgetOfExactType vs InheritedWidget performance
-                final GestureDetector? gestures =
-                    context.findAncestorWidgetOfExactType<GestureDetector>();
+                final GestureDetector? gestures = context.findAncestorWidgetOfExactType<GestureDetector>();
                 return Material(
                   color: Colors.transparent,
                   child: InkWell(
@@ -967,8 +956,7 @@ extension StyledWidget on Widget {
             )
           : Transform(
               key: key,
-              transform:
-                  Matrix4.diagonal3Values(x ?? all ?? 0, y ?? all ?? 0, 1.0),
+              transform: Matrix4.diagonal3Values(x ?? all ?? 0, y ?? all ?? 0, 1.0),
               alignment: alignment,
               origin: origin,
               transformHitTests: transformHitTests,
@@ -986,8 +974,7 @@ extension StyledWidget on Widget {
               key: key,
               builder: (animation) {
                 return _AnimatedTransform(
-                  transform:
-                      Matrix4.translationValues(offset.dx, offset.dy, 0.0),
+                  transform: Matrix4.translationValues(offset.dx, offset.dy, 0.0),
                   transformHitTests: transformHitTests,
                   duration: animation.duration,
                   curve: animation.curve,
